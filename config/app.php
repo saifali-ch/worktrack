@@ -123,6 +123,8 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-    'admin_email' => env('ADMIN_EMAIL', fake()->email())
+    'admin_email' => env('ADMIN_EMAIL', fake()->email()),
+
+    'company_name' => env('COMPANY_NAME', 'Worktrack')
 
 ];
