@@ -6,12 +6,13 @@
 
   <title>{{ config('app.name') }}</title>
 
-  @vite('resources/scss/app.scss')
-
+  @vite(['resources/scss/app.scss', 'resources/js/app.js'])
+  @livewireStyles
 </head>
 <body class="font-sans antialiased">
 
 {{ $slot }}
 
+@livewireScripts
 </body>
 </html>

@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "@tailwindcss/typography": "^0.5.12",
-        "gotham-fonts": "^1.0.3"
+        "gotham-fonts": "^1.0.3",
+        "sweetalert2": "^11.10.7"
     }
 }

@@ -46,7 +46,7 @@
           </p>
         </div>
         <x-forms.button wire:click="back" text="Back" :icon="svg('heroicon-s-chevron-left', 'w-4 h-4')"
-                        :is-secondary="false"/>
+                        :is-secondary="true"/>
       @endif
 
       @if($errors->has('url'))
