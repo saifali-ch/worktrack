@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "gotham-fonts/css/gotham-rounded.css";
+
+[x-cloak] {
+    display: none;
+}
+
+.swal2-popup {
+    font-size: 14px !important;
+}
+
+.swal2-popup {
+    font-size: 14px !important;
+}
+
+.loader {
+    width: 45px;
+    aspect-ratio: 1;
+    --c: no-repeat linear-gradient(#5A3184 0 0);
+    background: var(--c), var(--c), var(--c);
+    animation: l18-1 1s infinite, l18-2 1s infinite;
+}
+
+@keyframes l18-1 {
+    0%, 100% {
+        background-size: 20% 100%;
+    }
+    33%, 66% {
+        background-size: 20% 20%;
+    }
+}
+
+@keyframes l18-2 {
+    0%, 33% {
+        background-position: 0 0, 50% 50%, 100% 100%;
+    }
+    66%, 100% {
+        background-position: 100% 0, 50% 50%, 0 100%;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #C6C7C8;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
