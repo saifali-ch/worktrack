@@ -28,8 +28,8 @@
       <livewire:content.dashboard wire:key="content-dashboard"/>
     @elseif($currentPage === 'invoices')
       <livewire:content.invoices wire:key="content-invoices"/>
-    @elseif($currentPage === 'profile')
-      <livewire:profile wire:key="profile-component"/>
+    @elseif($currentPage === 'my-details')
+      <livewire:content.my-details wire:key="content-my-details"/>
     @endif
   </div>
 
