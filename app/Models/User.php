@@ -36,6 +36,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function invoices() {
+        return $this->hasMany(Invoice::class);
+    }
+
     public function isAdmin(): bool {
         return $this->role === 'admin';
     }
@@ -52,6 +56,12 @@ class User extends Authenticatable
 
     public function scopeWorker(Builder $query): void {
         $query->whereRole('worker');
+    }
+
+    protected function name(): Attribute {
+        return new Attribute(
+            get: fn() => "$this->first_name $this->last_name",
+        );
     }
 
     protected function casts(): array {

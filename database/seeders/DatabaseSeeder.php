@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Invoice;
+use App\Models\Shift;
+use App\Models\Site;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -19,5 +22,9 @@ class DatabaseSeeder extends Seeder
             'last_name' => 'Ali',
             'email' => config('app.admin_email')
         ]);
+
+        Site::factory()->count(10)->create();
+        Invoice::factory()->count(10)->create();
+        Shift::factory()->count(100)->create();
     }
 }
