@@ -10,6 +10,12 @@ class Shift extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $casts = [
+        'date' => 'date',
+        'start_time' => 'datetime',
+        'finish_time' => 'datetime',
+    ];
+
     protected $fillable = [
         'user_id',
         'invoice_id',
@@ -23,5 +29,9 @@ class Shift extends Model
 
     public function invoice() {
         return $this->belongsTo(Invoice::class);
+    }
+
+    public function site() {
+        return $this->belongsTo(Site::class)->withTrashed();
     }
 }

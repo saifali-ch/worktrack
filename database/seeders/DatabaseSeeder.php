@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Site::factory()->count(10)->create();
-        Invoice::factory()->count(10)->create();
+        Invoice::factory()->count(100)->create();
         Shift::factory()->count(100)->create();
     }
 }

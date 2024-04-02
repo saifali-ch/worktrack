@@ -16,7 +16,9 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "@selectize/selectize": "^0.15.2",
         "@tailwindcss/typography": "^0.5.12",
+        "flatpickr": "^4.6.13",
         "gotham-fonts": "^1.0.3",
         "jquery": "^3.7.1",
         "sweetalert2": "^11.10.7"

@@ -1,4 +1,6 @@
 <div>
+  <livewire:components.invoice-preview/>
+
   <div class="overflow-y-scroll {{ $class }}" tabindex="-1">
     <table class="hidden sm:table table-sm  md:table-md">
       <thead class="sticky top-0">
@@ -25,8 +27,11 @@
           </td>
           <td>
             <div class="flex justify-end gap-6 cursor-pointer">
-              <x-heroicon-o-arrow-down-tray class="text-secondary w-4 h-4"/>
-              <x-heroicon-o-arrow-right class="text-secondary w-4 h-4"/>
+              <a href="{{ route('invoices.download', $invoice) }}">
+                <x-heroicon-o-arrow-down-tray class="text-secondary w-4 h-4"/>
+              </a>
+              <x-heroicon-o-arrow-right wire:click="dispatch('showInvoicePreview', ['{{ $invoice->id }}'])"
+                                        class="text-secondary w-4 h-4"/>
             </div>
           </td>
         </tr>
@@ -49,7 +54,8 @@
           @else
             <span class="text-xs text-error bg-error-content rounded-xl px-4 py-1">Not Paid</span>
           @endif
-          <x-heroicon-o-arrow-right class="w-5 h-5"/>
+            <x-heroicon-o-arrow-right wire:click="dispatch('showInvoicePreview', ['{{ $invoice->id }}'])"
+                                      class="w-5 h-5"/>
         </div>
       </div>
     @endforeach

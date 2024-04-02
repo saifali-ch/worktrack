@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -48,12 +49,6 @@ class User extends Authenticatable
         return $this->role === 'worker';
     }
 
-    public function photo(): Attribute {
-        return Attribute::make(
-            fn ($value) => $value ? Storage::url($value) : null,
-        );
-    }
-
     public function scopeWorker(Builder $query): void {
         $query->whereRole('worker');
     }
@@ -61,6 +56,18 @@ class User extends Authenticatable
     protected function name(): Attribute {
         return new Attribute(
             get: fn() => "$this->first_name $this->last_name",
+        );
+    }
+
+    protected function photo(): Attribute {
+        return Attribute::make(
+            fn($value) => $value ? Storage::url($value) : null,
+        );
+    }
+
+    protected function redactedAccountNumber(): Attribute {
+        return new Attribute(
+            get: fn() => Str::padLeft(substr($this->account_number, -4), strlen($this->account_number), '*')
         );
     }
 

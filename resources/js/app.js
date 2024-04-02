@@ -1,6 +1,9 @@
 import './bootstrap';
 import Swal from 'sweetalert2'
 import $ from 'jquery'
+import "@selectize/selectize/dist/js/selectize.min.js"
+import 'flatpickr/dist/flatpickr.min.js'
+import flatpickr from "flatpickr"
 
 window.$ = window.jQuery = $;
 
@@ -25,6 +28,55 @@ Livewire.on('toast', (e) => {
         icon: e[0].type,
         title: e[0].message
     })
+})
+
+Livewire.on('js:render', (e) => {
+    registerModalTriggers()
+    requestAnimationFrame(() => {
+        $('select.selectize').each(function () {
+            const $selectize = $(this)[0].selectize;
+            const items = $selectize ? [$selectize.getValue()] : ['null'];
+            if ($selectize) {
+                $selectize.destroy();
+            }
+            $(this).selectize({
+                items: items,
+                onChange: function () {
+                    this.$input[0].dispatchEvent(new Event('change'));
+                    this.blur();
+                }
+            });
+        });
+
+        flatpickr('.fp-calender', {
+            disableMobile: true,
+        });
+
+        flatpickr('.fp-calender.range', {
+            disableMobile: true,
+            mode: "range",
+            defaultDate: e[0] ? [e[0].fromDate, e[0].toDate] : [],
+            onClose: function (selectedDates, dateStr, instance) {
+                const from = $('#fromDate');
+                const to = $('#toDate');
+                from.val(dateStr.split(' to ')[0]);
+                to.val(dateStr.split(' to ')[1]);
+                from[0].dispatchEvent(new Event('input'));
+                to[0].dispatchEvent(new Event('input'));
+            },
+        });
+
+        flatpickr('.fp-time', {
+            disableMobile: true,
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "G:i K",
+        });
+    })
+})
+
+Livewire.on('show:invoice-preview', function () {
+    showModal('modal-invoice-preview');
 })
 
 /**

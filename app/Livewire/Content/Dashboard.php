@@ -27,7 +27,7 @@ class Dashboard extends Component
 
         $this->totalInvoices = $invoices->count();
 
-        $this->latestInvoices = $invoices->take(5);
+        $this->latestInvoices = $invoices->take(15);
 
         $this->totalIncome = $invoices->sum(fn($invoice) => $invoice->shifts->sum('total'));
 

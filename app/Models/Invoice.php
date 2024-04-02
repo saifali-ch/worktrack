@@ -17,6 +17,12 @@ class Invoice extends Model
         return $this->hasMany(Shift::class);
     }
 
+    protected function paddedId(): Attribute {
+        return new Attribute(
+            get: fn() => str_pad($this->id, 5, '0', STR_PAD_LEFT),
+        );
+    }
+
     protected function amount(): Attribute {
         return new Attribute(
             get: fn() => Number::currency($this->shifts()->sum('total')),

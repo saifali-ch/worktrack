@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @import "gotham-fonts/css/gotham-rounded.css";
+@import "selectize";
+@import "flatpickr";
+
+
+:root {
+    --worktrack-primary: #5A3184;
+    --worktrack-secondary: #4F525B;
+}
 
 [x-cloak] {
     display: none;

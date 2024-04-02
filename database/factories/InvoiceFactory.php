@@ -12,9 +12,14 @@ class InvoiceFactory extends Factory
 
         $userIds = User::pluck('id')->toArray();
 
+        $dates = collect(range(1, 10))->map(function () {
+            return Carbon::now()->subDays(fake()->numberBetween(1, 365));
+        });
+
         $months = [
             Carbon::now(),
-            Carbon::now()->subMonthNoOverflow()->startOfMonth()
+            Carbon::now()->subMonthNoOverflow()->startOfMonth(),
+            ...$dates
         ];
 
         return [
