@@ -4,6 +4,7 @@ import $ from 'jquery'
 import "@selectize/selectize/dist/js/selectize.min.js"
 import 'flatpickr/dist/flatpickr.min.js'
 import flatpickr from "flatpickr"
+import "inputmask/dist/jquery.inputmask.min.js"
 
 window.$ = window.jQuery = $;
 
@@ -72,6 +73,37 @@ Livewire.on('js:render', (e) => {
             noCalendar: true,
             dateFormat: "G:i K",
         });
+
+        function dispatchInputEvent() {
+            this.dispatchEvent(new Event('input'));
+        }
+
+        const currencyInputs = $('.currency');
+        currencyInputs.inputmask('currency', {
+            allowMinus: false,
+            groupSeparator: ',',
+            prefix: 'GBP £',
+            rightAlign: false,
+            removeMaskOnSubmit: true,
+            oncomplete: dispatchInputEvent,
+            oncleared: dispatchInputEvent
+        });
+        currencyInputs.on('change', dispatchInputEvent);
+
+        // Scroll into view the last shift when a new shift is added
+        const shifts = document.querySelectorAll('.shift');
+        if (shifts.length) {
+            const lastShift = shifts[shifts.length - 1];
+
+            // Scroll the last shift into view with smooth behavior
+            lastShift.scrollIntoView({behavior: 'smooth'});
+
+            // Scroll additional 50 pixels if needed
+            // Note: We wrap this in a 'setTimeout' to ensure it runs after the smooth scroll has finished.
+            setTimeout(() => {
+                window.scrollBy({top: 50, left: 0, behavior: 'smooth'});
+            }, 200);
+        }
     })
 })
 
@@ -131,3 +163,73 @@ window.closeModal = (modalId) => {
     const modal = document.getElementById(modalId);
     modal.close();
 }
+
+// Invoice Alpine Component
+window.invoice = (sites) => ({
+    sites: sites,
+
+    clearInvoice() {
+        $('select.selectize').each(function () {
+            $(this)[0].selectize.destroy();
+            $(this).selectize({
+                items: ['null'],
+            });
+        });
+        Livewire.dispatch('clearInvoice')
+    },
+
+    formatDate(str) {
+        const formatted = new Date(str).toLocaleDateString('en-GB', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        return formatted === 'Invalid Date' ? '' : formatted;
+    },
+
+    getSiteName(siteId) {
+        if (!siteId) return;
+        const site = this.sites.find(site => site.id === parseInt(siteId));
+        return site ? site.name : '';
+    },
+
+    total(shifts) {
+        const total = shifts.reduce((acc, shift) => acc + this.parseGBP(shift.total), 0);
+        return this.formatToGBP(total)
+    },
+
+    removeGBP(currency) {
+        return currency.replace('GBP ', '')
+    },
+
+    parseGBP(currencyString) {
+        // Remove currency symbol and potential preceding characters (e.g., "GBP £", spaces)
+        currencyString = currencyString.replace(/[^\d.,]/g, '');
+
+        // Remove commas
+        currencyString = currencyString.replace(/,/g, '');
+
+        // Convert to a Number type
+        return parseFloat(currencyString) || 0;
+    },
+
+    formatToGBP(numberValue) {
+        // Ensure the input is a number
+        if (isNaN(numberValue)) {
+            return
+        }
+
+        // Convert the number to a string with fixed two decimal places
+        let currencyString = numberValue.toFixed(2);
+
+        // Add comma as a thousand separator
+        let parts = currencyString.split('.');
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+        // Reassemble the parts and prepend the currency symbol
+        currencyString = '£' + parts.join('.');
+
+        return currencyString;
+    }
+
+})

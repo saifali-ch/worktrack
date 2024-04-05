@@ -19,6 +19,13 @@
       Submitted Invoices
     </button>
 
+    <button @click="$wire.currentPage = 'create-invoice'; content = true"
+            :class="{ 'text-white bg-primary': $wire.currentPage === 'create-invoice' }"
+            class="inline-flex items-center text-secondary rounded-lg transition-all duration-150 gap-2 px-4 py-3 w-full">
+      <x-icon-invoice/>
+      Create Invoice
+    </button>
+
     <button @click="$wire.currentPage = 'my-details'; content = true"
             :class="{ 'text-white bg-primary': $wire.currentPage === 'my-details' }"
             class="inline-flex items-center text-secondary rounded-lg transition-all duration-150 gap-2 px-4 py-3 w-full">
