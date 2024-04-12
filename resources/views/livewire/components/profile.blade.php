@@ -53,18 +53,24 @@
           <x-forms.input wire:model="last_name" label="Last Name"/>
           <x-forms.input label="Email" type="email"
                          value="{{ auth()->user()->email }}" readonly/>
-          <x-forms.input wire:model="address" label="Address"/>
-          <x-forms.input wire:model="post_code" label="Post Code"/>
+
+          @unless(auth()->user()->isAdmin())
+            <x-forms.input wire:model="address" label="Address"/>
+            <x-forms.input wire:model="post_code" label="Post Code"/>
+          @endunless
         </div>
       </div>
-      <div class="flex-1">
-        <h2 class="text-sm text-accent font-medium mb-5">Bank Details</h2>
-        <div class="flex flex-col gap-3">
-          <x-forms.input wire:model="account_name" label="Account Name"/>
-          <x-forms.input wire:model="short_code" label="Short Code"/>
-          <x-forms.input wire:model="account_number" label="Account Number"/>
+
+      @unless(auth()->user()->isAdmin())
+        <div class="flex-1">
+          <h2 class="text-sm text-accent font-medium mb-5">Bank Details</h2>
+          <div class="flex flex-col gap-3">
+            <x-forms.input wire:model="account_name" label="Account Name"/>
+            <x-forms.input wire:model="short_code" label="Short Code"/>
+            <x-forms.input wire:model="account_number" label="Account Number"/>
+          </div>
         </div>
-      </div>
+      @endunless
     </div>
     @if($actions)
       <div class="flex gap-6 w-full  sm:w-1/2">

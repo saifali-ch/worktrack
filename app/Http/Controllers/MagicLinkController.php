@@ -22,7 +22,11 @@ class MagicLinkController extends Controller
     }
 
     public function logout() {
+        $isAdmin = auth()->user()->isAdmin();
         auth()->logout();
-        return to_route('login');
+
+        return $isAdmin
+            ? to_route('admin.login')
+            : to_route('login');
     }
 }

@@ -7,7 +7,11 @@ use Livewire\Component;
 
 class Home extends Component
 {
-    public $currentPage = 'dashboard';
+    public $currentPage;
+
+    public function mount() {
+        $this->currentPage = auth()->user()->isAdmin() ? 'sites' : 'dashboard';
+    }
 
     #[On('changePage')]
     public function setCurrentPage($page) {
@@ -15,6 +19,8 @@ class Home extends Component
     }
 
     public function render() {
-        return view('livewire.worker.home');
+        return auth()->user()->isAdmin()
+            ? view('livewire.admin.home')
+            : view('livewire.worker.home');
     }
 }
