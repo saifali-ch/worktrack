@@ -8,7 +8,7 @@ facilitates seamless worker interactions, from updating personal details to subm
 standout features include real-time invoice generation in PDF format, automated email notifications, and meticulous
 administrative control over worker details and site management.
 
-![alt text](https://oaidalleapiprodscus.blob.core.windows.net/private/org-Jg8AgBfmQp7s77i4kRelqx2G/user-1fQ52eScLgiU9eI8JyP21TSe/img-kltzympToIJW1xIsVJXul26R.png?st=2024-03-29T00%3A22%3A23Z&se=2024-03-29T02%3A22%3A23Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-03-28T20%3A57%3A48Z&ske=2024-03-29T20%3A57%3A48Z&sks=b&skv=2021-08-06&sig=AlnjFHHFDilFNWzGs66hcpT1OXDWu/07EoLfFq18Yhc%3D)
+![Worktrack](https://github.com/user-attachments/assets/6511efaa-4a12-406f-b63a-40ab2f6523f2)
 
 ### Key Features:
 
