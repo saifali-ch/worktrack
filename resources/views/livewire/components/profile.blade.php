@@ -74,7 +74,7 @@
     </div>
     @if($actions)
       <div class="flex gap-6 w-full  sm:w-1/2">
-        <x-forms.button wire:target="save" text="Submit" type="submit"/>
+        <x-forms.button wire:target="save" text="Update" type="submit"/>
         <x-forms.button wire:click="doItLater" text="I'll do it later" :is-secondary="true"/>
       </div>
     @endif

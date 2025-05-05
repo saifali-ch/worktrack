@@ -1,3 +1,5 @@
+@section('title', 'Worker Login | ' . config('app.name'))
+
 <section class="flex justify-between h-screen">
 
   <section class="flex flex-col w-full gap-40 p-6

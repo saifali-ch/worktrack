@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Livewire\Worker;
+namespace App\Livewire;
 
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class Home extends Component
+class Dashboard extends Component
 {
     public $currentPage;
 

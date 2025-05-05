@@ -1,3 +1,5 @@
+@section('title', 'Dashboard | ' . config('app.name'))
+
 <section x-show="content"
          x-transition:enter="transition ease-out duration-300"
          x-transition:enter-start="opacity-0 transform scale-90"

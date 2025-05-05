@@ -1,3 +1,5 @@
+@section('title', 'Login | ' . config('app.name'))
+
 <x-layouts.app>
   <x-modals.forgot-password/>
 

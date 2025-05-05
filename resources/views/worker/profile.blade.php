@@ -1,4 +1,6 @@
 <x-layouts.app>
+  @section('title', 'Worker Profile | ' . config('app.name'))
+
   <section class="flex lg:max-h-screen">
 
     <section class="hidden h-screen p-4 pr-0  lg:block lg:w-4/12">

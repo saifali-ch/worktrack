@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MagicLinkController;
 use App\Livewire\Auth\Login;
-use App\Livewire\Worker\Home;
+use App\Livewire\Dashboard;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,7 +28,7 @@ Route::controller(MagicLinkController::class)->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::view('profile', 'worker.profile')->name('worker.profile');
-    Route::get('dashboard', Home::class)->name('worker.dashboard');
+    Route::get('dashboard', Dashboard::class)->name('worker.dashboard');
 
     Route::controller(InvoiceController::class)->group(function () {
         Route::get('invoices/download/{invoice}', 'download')->name('invoices.download');
@@ -36,5 +36,5 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('admin/dashboard', Home::class)->name('admin.dashboard');
+    Route::get('admin/dashboard', Dashboard::class)->name('admin.dashboard');
 });

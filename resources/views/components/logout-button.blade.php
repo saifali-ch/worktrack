@@ -1,7 +1,7 @@
 <div data-modal-id="modal-logout"
      class="flex justify-between items-center rounded-lg cursor-pointer p-2 hover:bg-base-300">
   <div class="flex items-center gap-2">
-    <img class="w-7 h-7 rounded-xl" src="{{ auth()->user()->photo }}" alt=""/>
+    <img class="w-7 h-7 rounded-xl" src="{{ auth()->user()->photo ?? Vite::image('user.png') }}" alt=""/>
 
     <div class="select-none">
       <h3 class="text-sm text-accent font-medium">{{ auth()->user()->name }}</h3>

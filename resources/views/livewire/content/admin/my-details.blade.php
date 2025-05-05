@@ -14,6 +14,6 @@
   </div>
 
   <div class="lg:absolute lg:right-6 lg:bottom-6">
-    <x-forms.button text="Save" type="button" class="w-[165px]" @click="$dispatch('saveProfile')"/>
+    <x-forms.button text="Update" type="button" class="w-[165px]" @click="$dispatch('saveProfile')"/>
   </div>
 </section>
